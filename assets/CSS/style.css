@@ -33,6 +33,11 @@ p {
 
 /* Timer*/
 
+/*Start Button*/
+#start {
+    margin-left: 675px;
+}
+
 /*Questions*/
 
 .questionText {
