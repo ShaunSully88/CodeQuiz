@@ -2,21 +2,12 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    background-color: violet;
+   
 }
 
 /* Header*/
-h1 {
-    font-size: 30pt;
-    text-align: center;
-    color: purple;
-    padding-top: 150px;
-}
 
-p {
-    font-size: 16pt;
-    text-align: center;
-}
+
 
 #highscore {
     margin-top: 5px;
@@ -39,26 +30,22 @@ p {
 /* Timer*/
 
 /*Start Button*/
-#start {
-    margin-left: 675px;
-    margin-bottom: 20px;
-}
+
 
 /*Questions*/
 
-.questionText {
-    font-size: 20pt;
-    color: purple;
-    text-align: center;
-}
 
 /*Answers*/
 
-body ul {
-    margin-left: 700px;    
-    list-style: none;
+body {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
 }
-
 
 button {
     background-color: purple;
@@ -76,4 +63,27 @@ button:hover {
     background-color: white;
     border: purple;
     cursor: pointer;
+}
+
+.container {
+
+    width: 800px;
+    max-width: 80%;
+    background-color: violet;
+    border: 2px solid purple;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.btn-grid {
+    display: grid;
+}
+
+.start-btn {
+    justify-content: center;
+    align-items: center;
+}
+
+.hide {
+display: none;
 }

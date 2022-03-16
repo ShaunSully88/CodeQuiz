@@ -8,22 +8,32 @@
     <title>Code Quiz</title>
 </head>
 <body>
-    <h1 id="codeHeader"><strong>Coding Quiz Challenge</strong></h1>
-    <button id="highscores">View High Scores</button>
+
+    <div class="container">
+        <div id="question-container" class="hide">
+            <div id="question">Question</div>
+            <div id="answer-buttons" class="btn-grid">
+                <button class="btn">Answer 1</button>
+                <button class="btn">Answer 2</button>
+                <button class="btn">Answer 3</button>
+                <button class="btn">Answer 4</button>
+            </div>
+        </div>
+        <div class="controls">
+            
+            <button id="next-btn btn" class="next-btn btn hide" >Next</button>
+        </div>
+    </div>
+    <button id="start-btn" class="start-btn" type="button" onclick="setTimeout(startQuiz, 2000);">Start Code Quiz</button>
+    <button id="highscores" type="button">View High Scores</button>
     <h4 id="timer">Timer: </h4>
-    <button id="start" type="button">Start Code Quiz</button>
-
-    <p> Try to answer the following code related questions within the time limit. <br/>
-    Keep in mind each incorrect answer will deduct 10 seconds from the time clock.</p>
-
+    <div id="quiz"></div>
+    
+    <div id="results"></div>
     
 
-    <div class="questions" id="questions">
-
-
-    </div>    
-        
-    
+   
+ 
     
     <script src="./assets/js.js"></script>
 </body>

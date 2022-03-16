@@ -1,16 +1,64 @@
 
 var timerEl = document.getElementById("timer");
 var timeLeft= 75;
-var startQuiz = "";
+var highscore = timeLeft;
+var questionContainerElement = document.getElementById("question-container");
+var resultsContainer = document.getElementById("results");
+var startButton = document.getElementById("start-btn");
+var currentQuestion
+var questions = [
+    {
+        question: "Commonly used data types do not include:",
+        answer:[ 
+            {1:"Strings", correct: false},
+            {2: "Booleans", correct: true},
+            {3: "Alerts", correct: false},
+            {4: "Numbers", correct: false}
+            ]
+       },
+       {
+        questionText: "The condition in an if/else statement is enclosed with _____.",
+        answer: [
+            {1: "Quotes", correct: true},
+            {2: "Curly Brackets", correct: false},
+            {3: "Parenthesis", correct: false},
+            {4: "Square Brackets", correct: false}
+        ]
+       },
+       {
+        questionText: "Arrays in Javascript can be used to store _____." ,
+        answer: [
+            {1: "Numbers and Strings", correct: false},
+            {2: "Other Arrays", correct: false},
+            {3: "Booleans", correct: true},
+            {4: "All of the above", correct: false}
+        ]
+       },  
+       {
+        questionText: " String Values must be enclosed in within ____ when being assigned to variables.",
+        answer: [
+            {1: "Commas", correct: false},
+            {2: "Curly Brackets", correct: false},
+            {3: "Quotes", correct: true},
+            {4: "Parenthesis", correct: false}
+        ]
+       }
+];
 
 
+
+
+function selectAnswer(){}
 
 
 // timer countdown //
 
-function countdown() {
-   document.getElementById("start").addEventListener("click",  function (){
+// Do not touch countdown Function, it works //
 
+function countdown() {
+
+   document.getElementById("start-btn").addEventListener("click",  function (){
+    
     var timeLeft= 75;
     var timeInterval = setInterval(function() {
         document.getElementById("timer").innerHTML = timeLeft + " " + "seconds remaining";
@@ -24,48 +72,25 @@ function countdown() {
         }
     }, 1000
     );
+    console.log(timer);   
     
+    startButton.classList.add("hide")
+questionContainerElement.classList.remove("hide")  
+NextQuestion()
 
-    console.log(timer);
-   
-    
+
+function nextQuestion(){}
+
 })};    
     
-countdown();
+countdown(); 
 
 
-function startQuiz() {
-    startPage
 
-    countdown();
-
-}
 
 
 //Questions//
-var questions = [
-    {
-     questionText: "Commonly used data types do not include:",
-     answers: ["1. Strings", "2. Booleans", "3. Alerts", "4. Numbers"],
-     correct: "2"
-    },
-    {
-     questionText: "The condition in an if/else statement is enclosed with _____.",
-     answers: ["1. Quotes", "2. Curly Brackets", "3. Parenthesis", "4. Square Brackets"],
-     correct: "1"
-    },
-    {
-     questionText: "Arrays in Javascript can be used to store _____." ,
-     answers: ["1. Numbers and Strings", "2. Other Arrays", "3. Booleans", "4. All of the above"],
-     correct: "3"
-    },  
-    {
-     questionText: " String Values must be enclosed in within ____ when being assigned to variables.",
-     answers: ["1. Commas", "2. Curly Brackets", "3. Quotes", "4. Parenthesis"],
-     correct: "3"
-    }
- 
- ];
+
 
 // HighScores//
 
@@ -85,4 +110,4 @@ saveHighScore =  e => {
 
     localStorage.setItem("highScores", JSON.stringify(highScores));
     
-}
+};
