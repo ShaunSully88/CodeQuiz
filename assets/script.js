@@ -4,6 +4,8 @@ const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
 let shuffledQuestions, currentQuestion
+let timeLeft = 75;
+
 
 
 startButton.addEventListener('click', startGame)
@@ -13,6 +15,21 @@ nextButton.addEventListener('click', () => {
 })
 
 function startGame() {
+         timeLeft= 75;
+        const timeInterval = setInterval(function() {
+            document.getElementById("timer").innerHTML = timeLeft + " " + "seconds remaining";
+    
+            timeLeft -= 1;
+    
+            if(timeLeft <= 0) {
+                clearInterval(timeInterval);
+                document.getElementById("timer").innerHTML = "You have run out of time!"
+                
+            }
+        }, 1000
+        );
+        console.log(timer);   
+        
     startButton.classList.add('hide')
     shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestion = 0
@@ -23,8 +40,7 @@ function startGame() {
 
 function nextQuestion () {
     resetState()
-    showQuestion(shuffledQuestions[currentQuestion])
-
+    showQuestion(shuffledQuestions[currentQuestion])   
 }
 
 function showQuestion(question) {
@@ -35,10 +51,11 @@ function showQuestion(question) {
         button.classList.add('btn')
         if (answer.correct) {
             button.dataset.correct = answer.correct
-        }
+        } 
         button.addEventListener('click', selectAnswer)
         answerButtonsElement.appendChild(button)
-    })
+    })    
+
 }
 
 function resetState() {
@@ -52,6 +69,7 @@ function resetState() {
 function selectAnswer (e) {
     const selectedButton = e.target
     const correct = selectedButton.dataset.correct
+    const incorrect = selectedButton.dataset.false
     setStatusClass(document.body, correct)
     Array.from(answerButtonsElement.children).forEach(button => {
         setStatusClass(button, button.dataset.correct)
@@ -60,7 +78,7 @@ function selectAnswer (e) {
     nextButton.classList.remove('hide')
     } else {
         startButton.innerText = 'Restart'
-        startButton.classList.remove('hide')
+        startButton.classList.remove('hide')   
     }
 }
 
@@ -69,9 +87,16 @@ function setStatusClass(element, correct) {
     if(correct) {
         element.classList.add('correct')
     } else {
-        element.classList.add('wrong')
-    }
+        element.classList.add('wrong') 
+        
+    }  
+
+// I believe code should go here //
+ 
 }
+
+
+
 
 function clearStatusClass(element) {
     element.classList.remove('correct')
@@ -120,52 +145,3 @@ const questions = [
 
 
 
-// timer countdown //
-
-// Do not touch countdown Function, it works //
-
-function startQuiz() {
-
-   document.getElementById("start-btn").addEventListener("click",  function (){
-    
-    var timeLeft= 75;
-    var timeInterval = setInterval(function() {
-        document.getElementById("timer").innerHTML = timeLeft + " " + "seconds remaining";
-
-        timeLeft -= 1;
-
-        if(timeLeft <= 0) {
-            clearInterval(timeInterval);
-            document.getElementById("timer").innerHTML = "You have run out of time!"
-            
-        }
-    }, 1000
-    );
-    console.log(timer);   
-    
-    startButton.classList.add("hide")
-    
-    questionContainerElement.classList.remove("hide") 
-    
-    showQuestion();
-    nextQuestion();
-
-// HighScores//
-
-var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
-console.log(highScores);
-
-saveHighScore =  e => {
-    e.preventDefault();
-    var score = { 
-        score: mostRecentScore,
-        name: username.value,
-    };
-    highScores.push(score);
-    highScores.sort( (a, b) => b.score - a.score)
-
-    highScores.splice(5);
-
-    localStorage.setItem("highScores", JSON.stringify(highScores));
-    
-};
