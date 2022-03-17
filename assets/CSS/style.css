@@ -1,0 +1,89 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+
+.btn.correct {
+    background-color: green;
+}
+
+.btn.wrong {
+    background-color: red;
+}
+
+.container {
+    width: 400px;
+    max-width: 80%;
+    background-color: black;
+    border-radius: 10px;
+    border: 4pt double white;
+    padding: 10px;    
+}
+
+.btn-grid {
+    display: grid;
+    padding: 15px;
+    margin: 5px;
+}
+
+.btn {
+    margin: 5px;
+    padding: 5px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.btn:hover {
+    text-decoration: underline;
+    
+    font-weight: bold ;
+    cursor: pointer;
+}
+
+.start-btn, .next-btn {
+    font-size: 20px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.controls {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hide {
+    display: none;
+}
+
+#question {
+    color: white;
+}
+
+.timer {
+    font-size: 20pt;
+    color: white;
+    margin-left:10px;
+    position:relative;
+    top: -300px;
+    right: -400px;
+}
+
+.highScore {
+    font-size: 20pt;
+    color: white;
+    position: relative;
+    top: -300px;
+    left: -850px;
+}
+
