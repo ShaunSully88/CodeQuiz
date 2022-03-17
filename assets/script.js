@@ -68,13 +68,16 @@ function resetState() {
 
 function selectAnswer (e) {
     const selectedButton = e.target
+    // correct not defined
     const correct = selectedButton.dataset.correct
-    const incorrect = selectedButton.dataset.false
+    //setStatus defined twice, why?
     setStatusClass(document.body, correct)
     Array.from(answerButtonsElement.children).forEach(button => {
         setStatusClass(button, button.dataset.correct)
     })
-    if(shuffledQuestions.length > currentQuestion +1) {
+    // aim for logic here
+
+     if(shuffledQuestions.length > currentQuestion +1) {
     nextButton.classList.remove('hide')
     } else {
         startButton.innerText = 'Restart'
@@ -87,10 +90,9 @@ function setStatusClass(element, correct) {
     if(correct) {
         element.classList.add('correct')
     } else {
-        element.classList.add('wrong') 
-        
+        element.classList.add('false')
+          
     }  
-
 // I believe code should go here //
  
 }
