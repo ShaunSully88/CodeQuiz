@@ -11,6 +11,8 @@ const saveScore = localStorage.setItem(timeLeft, "")
 
 
 
+
+
 startButton.addEventListener('click', startGame)
 nextButton.addEventListener('click', () => {
     currentQuestion++
@@ -46,6 +48,7 @@ function startGame() {
     questionContainerElement.classList.remove('hide')
     nextQuestion()
 
+
     
 
 }
@@ -61,10 +64,11 @@ function showQuestion(question) {
     question.answers.forEach(answer => {
         const button = document.createElement('button')
         button.innerText = answer.text
+        button.dataset.correct = answer.correct
         button.classList.add('btn')
-        if (answer.correct) {
-            button.dataset.correct = answer.correct
-        } 
+        //if (answer.correct) {
+         
+        //} 
         button.addEventListener('click', selectAnswer)
         answerButtonsElement.appendChild(button)
     })    
@@ -81,16 +85,19 @@ function resetState() {
 
 function selectAnswer (e) {
     const selectedButton = e.target
+    console.log(selectedButton)
+    console.log(selectedButton.dataset.correct)
     // correct not defined
-    const correct = true
+    
     //setStatus defined twice, why?
-    setStatusClass(document.body, correct)
-    Array.from(answerButtonsElement.children).forEach(button => {
-        setStatusClass(button, button.dataset.correct)
-    })
+    //setStatusClass(document.body, correct)
+    //Array.from(answerButtonsElement.children).forEach(button => {
+        //setStatusClass(button, button.dataset.correct)
+    //})
     // aim for logic here
-    if( answerButtonsElement === true) {
+    if(selectedButton.dataset.correct === "true") {
         console.log('correct')
+        nextQuestion()
     } else {
         console.log('wrong')
         timeLeft -= 10;
@@ -99,23 +106,23 @@ function selectAnswer (e) {
      if(shuffledQuestions.length > currentQuestion +1) {
     nextButton.classList.remove('hide')
     } else {
-        //clearInterval(timeInterval);
         startButton.innerText = 'Restart'
         startButton.classList.remove('hide')   
         scoreButton.innerText = 'Save Score'
         scoreButton.classList.remove('hide')
     }
+
 }
 
-function setStatusClass(element, correct) {
-    clearStatusClass(element)
-    if(correct) {
-        element.classList.add('correct')
-    } else {
-        element.classList.add('false')
+//function setStatusClass(element, correct) {
+ //   clearStatusClass(element)
+ //   if(correct) {
+//        element.classList.add('correct')
+ //   } else {
+ //       element.classList.add('false')
           
-    }  
-}
+  //  }  
+//}
 
 
 function clearStatusClass(element) {
@@ -161,7 +168,3 @@ const questions = [
     ]
    }
 ]
-
-
-
-
