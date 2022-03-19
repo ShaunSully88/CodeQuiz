@@ -1,10 +1,13 @@
 const startButton = document.getElementById('start-btn')
 const nextButton = document.getElementById('next-btn')
+const scoreButton = document.getElementById('score-btn')
 const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
 let shuffledQuestions, currentQuestion
 let timeLeft = 75;
+const timeInterval = ""
+const saveScore = localStorage.setItem(timeLeft, "")
 
 
 
@@ -12,6 +15,11 @@ startButton.addEventListener('click', startGame)
 nextButton.addEventListener('click', () => {
     currentQuestion++
     nextQuestion()
+})
+// Need Help Here
+scoreButton.addEventListener('click', () => {
+    window.prompt("Write your Name to save your score")
+    console.log(saveScore)
 })
 
 function startGame() {
@@ -27,6 +35,8 @@ function startGame() {
                 
             }
         }, 1000
+
+        
         );
         console.log(timer);   
         
@@ -36,11 +46,14 @@ function startGame() {
     questionContainerElement.classList.remove('hide')
     nextQuestion()
 
+    
+
 }
 
 function nextQuestion () {
     resetState()
     showQuestion(shuffledQuestions[currentQuestion])   
+    
 }
 
 function showQuestion(question) {
@@ -69,19 +82,28 @@ function resetState() {
 function selectAnswer (e) {
     const selectedButton = e.target
     // correct not defined
-    const correct = selectedButton.dataset.correct
+    const correct = true
     //setStatus defined twice, why?
     setStatusClass(document.body, correct)
     Array.from(answerButtonsElement.children).forEach(button => {
         setStatusClass(button, button.dataset.correct)
     })
     // aim for logic here
+    if( answerButtonsElement === true) {
+        console.log('correct')
+    } else {
+        console.log('wrong')
+        timeLeft -= 10;
+    }
 
      if(shuffledQuestions.length > currentQuestion +1) {
     nextButton.classList.remove('hide')
     } else {
+        //clearInterval(timeInterval);
         startButton.innerText = 'Restart'
         startButton.classList.remove('hide')   
+        scoreButton.innerText = 'Save Score'
+        scoreButton.classList.remove('hide')
     }
 }
 
@@ -93,11 +115,7 @@ function setStatusClass(element, correct) {
         element.classList.add('false')
           
     }  
-// I believe code should go here //
- 
 }
-
-
 
 
 function clearStatusClass(element) {
