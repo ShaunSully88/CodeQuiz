@@ -6,10 +6,8 @@ const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
 let shuffledQuestions, currentQuestion
 let timeLeft = 75;
-const timeInterval = ""
+let timeInterval 
 const saveScore = localStorage.setItem(timeLeft, "")
-
-
 
 
 
@@ -26,7 +24,7 @@ scoreButton.addEventListener('click', () => {
 
 function startGame() {
          timeLeft= 75;
-        const timeInterval = setInterval(function() {
+          timeInterval = setInterval(function() {
             document.getElementById("timer").innerHTML = timeLeft + " " + "seconds remaining";
     
             timeLeft -= 1;
@@ -110,6 +108,7 @@ function selectAnswer (e) {
         startButton.classList.remove('hide')   
         scoreButton.innerText = 'Save Score'
         scoreButton.classList.remove('hide')
+        clearInterval(timeInterval)
     }
 
 }
