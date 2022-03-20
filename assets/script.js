@@ -9,6 +9,8 @@ let timeLeft = 75;
 let timeInterval 
 
 
+
+
 startButton.addEventListener('click', startGame)
 nextButton.addEventListener('click', () => {
     currentQuestion++
@@ -35,6 +37,7 @@ function startGame() {
         
     startButton.classList.add('hide')
     scoreButton.classList.add('hide')
+    
     shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestion = 0
     questionContainerElement.classList.remove('hide')
@@ -144,6 +147,5 @@ const questions = [
 function endQuiz() {
    let userScore = window.alert("Your score is " + timeLeft) 
    let userName = window.prompt('Write your name to save your score.')
-   localStorage.setItem("userName", userName)
-   localStorage.setItem("timeLeft", timeLeft)
+   let highScore = localStorage.setItem(userName, timeLeft)   
 }
