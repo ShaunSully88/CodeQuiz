@@ -7,7 +7,15 @@ const answerButtonsElement = document.getElementById('answer-buttons')
 let shuffledQuestions, currentQuestion
 let timeLeft = 75;
 let timeInterval 
-const saveScore = localStorage.setItem(timeLeft, "")
+let userName
+const NO_OF_HIGH_SCORES = 5
+const HIGH_SCORES = highScores
+
+
+
+
+
+
 
 
 
@@ -34,9 +42,7 @@ function startGame() {
                 document.getElementById("timer").innerHTML = "You have run out of time!"
                 
             }
-        }, 1000
-
-        
+        }, 1000  
         );
         console.log(timer);   
         
@@ -45,10 +51,6 @@ function startGame() {
     currentQuestion = 0
     questionContainerElement.classList.remove('hide')
     nextQuestion()
-
-
-    
-
 }
 
 function nextQuestion () {
@@ -167,3 +169,22 @@ const questions = [
     ]
    }
 ]
+
+function saveHighScore(score, userName) {
+    userName = window.prompt("Write your Name to save your score")
+    const saveScore = {score, userName}
+    highScores.push(saveScore)
+    highScores.sort((a, b) => b.score - a.score)
+    highScores.splice(NO_OF_HIGH_SCORES)
+    localStorage.setItem(HIGH_SCORES, JSON.stringify(highScores))
+    
+    
+};
+
+function showHighScores () {
+    const highScores = JSON.parse(localStorage.getItem(HIGH_SCORES)) ?? []
+    const highScoreList = document.getElementById(HIGH_SCORES)
+    highScoreList.innerHTML = highScores.map((score) =>
+    '<li>${score.score} - ${score.name}')
+    .join('');
+}
