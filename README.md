@@ -6,4 +6,4 @@
 ![MockUp](https://user-images.githubusercontent.com/98717384/159184959-b01677e1-5fe7-4623-84ef-3b8c61e0a246.jpg)
 
 
-Link to page (
+Link to page ( https://shaunsully88.github.io/CodeQuiz/ )
