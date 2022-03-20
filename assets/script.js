@@ -7,28 +7,15 @@ const answerButtonsElement = document.getElementById('answer-buttons')
 let shuffledQuestions, currentQuestion
 let timeLeft = 75;
 let timeInterval 
-let userName
-const NO_OF_HIGH_SCORES = 5
-const HIGH_SCORES = highScores
-
-
-
-
-
-
-
-
+let score = timeLeft
 
 startButton.addEventListener('click', startGame)
 nextButton.addEventListener('click', () => {
     currentQuestion++
     nextQuestion()
 })
-// Need Help Here
-scoreButton.addEventListener('click', () => {
-    window.prompt("Write your Name to save your score")
-    console.log(saveScore)
-})
+
+
 
 function startGame() {
          timeLeft= 75;
@@ -87,14 +74,7 @@ function selectAnswer (e) {
     const selectedButton = e.target
     console.log(selectedButton)
     console.log(selectedButton.dataset.correct)
-    // correct not defined
     
-    //setStatus defined twice, why?
-    //setStatusClass(document.body, correct)
-    //Array.from(answerButtonsElement.children).forEach(button => {
-        //setStatusClass(button, button.dataset.correct)
-    //})
-    // aim for logic here
     if(selectedButton.dataset.correct === "true") {
         console.log('correct')
         nextQuestion()
@@ -107,23 +87,13 @@ function selectAnswer (e) {
     nextButton.classList.remove('hide')
     } else {
         startButton.innerText = 'Restart'
-        startButton.classList.remove('hide')   
+        startButton.classList.remove('hide')
+        questionContainerElement.classList.add('hide')   
         scoreButton.innerText = 'Save Score'
         scoreButton.classList.remove('hide')
-        clearInterval(timeInterval)
+        clearInterval(timeInterval)   
     }
-
 }
-
-//function setStatusClass(element, correct) {
- //   clearStatusClass(element)
- //   if(correct) {
-//        element.classList.add('correct')
- //   } else {
- //       element.classList.add('false')
-          
-  //  }  
-//}
 
 
 function clearStatusClass(element) {
@@ -170,21 +140,6 @@ const questions = [
    }
 ]
 
-function saveHighScore(score, userName) {
-    userName = window.prompt("Write your Name to save your score")
-    const saveScore = {score, userName}
-    highScores.push(saveScore)
-    highScores.sort((a, b) => b.score - a.score)
-    highScores.splice(NO_OF_HIGH_SCORES)
-    localStorage.setItem(HIGH_SCORES, JSON.stringify(highScores))
-    
-    
-};
-
-function showHighScores () {
-    const highScores = JSON.parse(localStorage.getItem(HIGH_SCORES)) ?? []
-    const highScoreList = document.getElementById(HIGH_SCORES)
-    highScoreList.innerHTML = highScores.map((score) =>
-    '<li>${score.score} - ${score.name}')
-    .join('');
+function endQuiz() {
+    window.prompt('Write your Initials to save your score.')
 }
